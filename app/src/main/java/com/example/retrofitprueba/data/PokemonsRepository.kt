@@ -2,7 +2,7 @@ package com.example.retrofitprueba.data
 
 import com.example.retrofitprueba.data.domain.repository.remote.PokemonProvider
 import com.example.retrofitprueba.data.domain.repository.remote.PokemonService
-import com.example.retrofitprueba.data.domain.repository.remote.response.PokemonResponse
+import com.example.retrofitprueba.data.domain.repository.remote.response.pokemon.PokemonResponse
 import javax.inject.Inject
 
 

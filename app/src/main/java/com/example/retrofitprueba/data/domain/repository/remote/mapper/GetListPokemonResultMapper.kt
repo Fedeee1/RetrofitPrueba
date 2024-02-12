@@ -1,8 +1,8 @@
 package com.example.retrofitprueba.data.domain.repository.remote.mapper
 
-import com.example.retrofitprueba.data.domain.model.PokemonModel
-import com.example.retrofitprueba.data.domain.model.ResultModel
-import com.example.retrofitprueba.data.domain.repository.remote.response.PokemonResponse
+import com.example.retrofitprueba.data.domain.model.pokemon.PokemonModel
+import com.example.retrofitprueba.data.domain.model.pokemon.ResultModel
+import com.example.retrofitprueba.data.domain.repository.remote.response.pokemon.PokemonResponse
 import javax.inject.Inject
 
 class GetListPokemonResultMapper @Inject constructor():

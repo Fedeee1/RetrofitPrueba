@@ -1,8 +1,8 @@
-package com.example.retrofitprueba.data.domain.model
+package com.example.retrofitprueba.data.domain.repository.remote.response.pokemon
 
 import com.google.gson.annotations.SerializedName
 
-data class PokemonModel(
+data class PokemonResponse(
     @SerializedName("name")
     val name: String,
     @SerializedName("url")

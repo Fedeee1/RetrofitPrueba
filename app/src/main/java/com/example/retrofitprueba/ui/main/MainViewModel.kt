@@ -1,7 +1,7 @@
 package com.example.retrofitprueba.ui.main
 
 import androidx.lifecycle.ViewModel
-import com.example.retrofitprueba.data.domain.model.PokemonModel
+import com.example.retrofitprueba.data.domain.model.pokemon.PokemonModel
 import com.example.retrofitprueba.data.domain.uses_cases.GetPokemonsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
