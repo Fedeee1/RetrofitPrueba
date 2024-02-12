@@ -12,20 +12,14 @@ import javax.inject.Inject
 class MainViewModel @Inject constructor(private val getPokemonsUseCase: GetPokemonsUseCase): ViewModel() {
 
     private var listPokemons: List<PokemonModel> = listOf()
-    private var listPokemonsName: MutableList<String> = mutableListOf()
+    var listPokemonsFlow: Flow<List<PokemonModel>> = flow {
+        isLoading = true
+        listPokemons = getPokemonsUseCase()
+        emit(listPokemons)
+    }
 
     private var isLoading: Boolean = true
     var isLoadingFlow: Flow<Boolean> = flow {
         emit(isLoading)
-    }
-
-    var listPokemonsFlow: Flow<List<String>> = flow {
-        isLoading = true
-        listPokemons = getPokemonsUseCase()
-
-        for (i in listPokemons){
-          listPokemonsName.add(i.name)
-        }
-        emit(listPokemonsName)
     }
 }
