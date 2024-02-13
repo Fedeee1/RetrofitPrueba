@@ -7,13 +7,13 @@ import java.io.Serial
 
 data class PokemonUrlResponse(
     @SerializedName("id")
-    val id : Int,
+    val id : String,
     @SerializedName("sprites")
-    val sprites : String,
+    val sprites : PokemonSpritesResponse,
     @SerializedName("weight")
-    val weight : Double,
+    val weight : String,
     @SerializedName("height")
-    val height : Double,
+    val height : String,
     @SerializedName("abilities")
-    val abilities : List<String>
+    val abilities : List<PokemonAbilitiesResponse>
 )

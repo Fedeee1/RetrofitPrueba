@@ -6,5 +6,5 @@ import kotlinx.parcelize.Parcelize
 
 data class PokemonSpritesResponse(
     @SerializedName("front_default")
-    val front_default : String
+    val image : String
 )

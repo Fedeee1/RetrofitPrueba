@@ -3,18 +3,17 @@ package com.example.retrofitprueba.data.domain.model.pokemon
 import com.example.retrofitprueba.data.domain.model.BaseModel
 import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
-import java.io.Serial
 
 @Parcelize
 data class PokemonUrlModel(
     @SerializedName("id")
-    val id : Int,
+    val id : String,
     @SerializedName("sprites")
     val sprites : String,
     @SerializedName("weight")
-    val weight : Double,
+    val weight : String,
     @SerializedName("height")
-    val height : Double,
+    val height : String,
     @SerializedName("abilities")
-    val abilities : List<String>
+    val abilities : String
 ) : BaseModel()

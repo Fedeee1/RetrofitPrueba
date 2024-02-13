@@ -1,6 +1,8 @@
 package com.example.retrofitprueba.data.domain.repository.remote
 
+import com.example.retrofitprueba.data.domain.repository.remote.response.pokemon.PokemonUrlResponse
 import com.example.retrofitprueba.data.domain.repository.remote.response.pokemon.ResultResponse
+import com.example.retrofitprueba.data.domain.repository.remote.response.pokemon.ResultUrlResponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -10,11 +12,11 @@ interface RemoteApiService {
     @GET("pokemon")
     suspend fun getListPokemon(
         @Query("limit") limit: Int,
-        @Query("offset") offset: Int,
+        @Query("offset") offset: Int
     ): Response<ResultResponse>
 
-    @GET("pokemon/{id}")
-    suspend fun getPokemonDeatailsById(
-        @Path("id") id: String
-    ): Response<ResultResponse>
+    @GET("pokemon/{name}")
+    suspend fun getPokemonDeatails(
+        @Path("name") name : String
+    ): Response<PokemonUrlResponse>
 }

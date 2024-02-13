@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class PokemonSpritesModel(
-    @SerializedName("front_default")
-    val image : String
+data class ResultUrlModel(
+    @SerializedName("results")
+    val results: PokemonUrlModel
 ) : BaseModel()
