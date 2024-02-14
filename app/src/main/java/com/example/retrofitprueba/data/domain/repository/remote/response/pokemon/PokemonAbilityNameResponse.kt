@@ -1,8 +1,10 @@
 package com.example.retrofitprueba.data.domain.repository.remote.response.pokemon
 
-import com.example.retrofitprueba.data.domain.model.BaseModel
-import kotlinx.parcelize.Parcelize
+import com.google.gson.annotations.SerializedName
 
 data class PokemonAbilityNameResponse(
-    val name : String
+    @SerializedName("name")
+    val name : String,
+    @SerializedName("url")
+    val url: String
 )

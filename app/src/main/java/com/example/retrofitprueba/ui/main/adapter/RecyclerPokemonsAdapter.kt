@@ -1,30 +1,28 @@
 package com.example.retrofitprueba.ui.main.adapter
 
-import android.content.Context
 import android.net.Uri
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.cardview.widget.CardView
-import androidx.fragment.app.add
-import androidx.fragment.app.commit
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.example.retrofitprueba.R
 import com.example.retrofitprueba.data.domain.model.pokemon.PokemonModel
 import com.example.retrofitprueba.data.domain.model.pokemon.PokemonUrlModel
-import com.example.retrofitprueba.ui.fragment_details.DetailsFragment
 import com.example.retrofitprueba.ui.main.MainActivity
 import com.squareup.picasso.Picasso
+import java.util.Locale
 
-class RecyclerPokemonsAdapter(listPokemon: List<PokemonModel>, listPokemonsDetails: List<PokemonUrlModel>, activity: MainActivity,
-    private val listener: onPokemonItemClickListener):
+class RecyclerPokemonsAdapter(listPokemon: List<PokemonModel>,
+                              listPokemonsDetails: List<PokemonUrlModel>,
+                              activity: MainActivity,
+                              private val listener: OnPokemonItemClickListener):
     RecyclerView.Adapter<RecyclerPokemonsAdapter.ViewHolder>() {
 
-    interface onPokemonItemClickListener{
+    interface OnPokemonItemClickListener{
         fun onPokemonClick(pokemonUrl: PokemonUrlModel ,pokemon: PokemonModel)
     }
 
@@ -34,14 +32,14 @@ class RecyclerPokemonsAdapter(listPokemon: List<PokemonModel>, listPokemonsDetai
     inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         var txtCountryName: TextView
         var imgPokemon: ImageView
-        var linearCardPokemons: LinearLayout
+        private var constraintCardPokemons: ConstraintLayout
         var cardPokemon: CardView
         var viewBlockActivity: View
 
         init {
             txtCountryName = itemView.findViewById(R.id.txtPokemonName)
             imgPokemon = itemView.findViewById(R.id.imgPokemon)
-            linearCardPokemons = itemView.findViewById(R.id.linearCardPokemons)
+            constraintCardPokemons = itemView.findViewById(R.id.constraintCardPokemons)
             cardPokemon = itemView.findViewById(R.id.cardPokemon)
             viewBlockActivity = activity.findViewById(R.id.viewBlockActivity)
         }
@@ -53,7 +51,7 @@ class RecyclerPokemonsAdapter(listPokemon: List<PokemonModel>, listPokemonsDetai
     }
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
 
-        viewHolder.txtCountryName.text = listPokemons[position].name.capitalize()
+        viewHolder.txtCountryName.text = listPokemons[position].name.replaceFirstChar { it.uppercaseChar() }
 
         val image = Uri.parse(listPokemonsDetails[position].sprites)
         Picasso.get()

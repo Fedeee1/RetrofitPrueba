@@ -16,7 +16,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity(), RecyclerPokemonsAdapter.onPokemonItemClickListener {
+class MainActivity : AppCompatActivity(), RecyclerPokemonsAdapter.OnPokemonItemClickListener {
 
     private lateinit var binding: ActivityMainBinding
     private val viewModel by viewModels<MainViewModel>()
@@ -42,7 +42,6 @@ class MainActivity : AppCompatActivity(), RecyclerPokemonsAdapter.onPokemonItemC
                 println("lista $it")
                 binding.progressLoading.isVisible = false
             }
-            println(listPokemonsDetails)
             addRecyclerView(listPokemons, listPokemonsDetails)
         }
         viewModel.viewModelScope.launch {

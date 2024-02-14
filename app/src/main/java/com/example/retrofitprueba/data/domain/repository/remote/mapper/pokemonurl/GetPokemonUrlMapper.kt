@@ -1,10 +1,7 @@
 package com.example.retrofitprueba.data.domain.repository.remote.mapper.pokemonurl
 
 import com.example.retrofitprueba.data.domain.model.pokemon.PokemonUrlModel
-import com.example.retrofitprueba.data.domain.model.pokemon.ResultUrlModel
 import com.example.retrofitprueba.data.domain.repository.remote.mapper.ResponseMapper
-import com.example.retrofitprueba.data.domain.repository.remote.response.pokemon.PokemonAbilitiesResponse
-import com.example.retrofitprueba.data.domain.repository.remote.response.pokemon.PokemonSpritesResponse
 import com.example.retrofitprueba.data.domain.repository.remote.response.pokemon.PokemonUrlResponse
 import javax.inject.Inject
 

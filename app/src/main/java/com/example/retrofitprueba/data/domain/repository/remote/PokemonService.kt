@@ -1,6 +1,7 @@
 package com.example.retrofitprueba.data.domain.repository.remote
 
 import com.example.retrofitprueba.core.RetrofitClient
+import com.example.retrofitprueba.data.domain.model.pokemon.PokemonUrlModel
 import com.example.retrofitprueba.data.domain.repository.remote.response.pokemon.PokemonResponse
 import com.example.retrofitprueba.data.domain.repository.remote.response.pokemon.PokemonUrlResponse
 import kotlinx.coroutines.Dispatchers
@@ -25,5 +26,4 @@ class PokemonService @Inject constructor() {
             response.body()!!
         }
     }
-
 }

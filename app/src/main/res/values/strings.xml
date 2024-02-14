@@ -2,4 +2,11 @@
     <string name="app_name">RetrofitPrueba</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="txtMainTitle">Pokemons</string>
+    <string name="txtCardNamePokemon">Nombre</string>
+    <string name="imgPokemon">Imagen de pokemon</string>
+    <string name="txtFragmentWeight">Peso</string>
+    <string name="txtFragmentHeight">Altura</string>
+    <string name="txtFragmentAbilities">Habilidades</string>
+    <string name="btnBack">Regresar</string>
 </resources>

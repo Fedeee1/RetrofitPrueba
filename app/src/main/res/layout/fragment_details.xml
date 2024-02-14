@@ -1,147 +1,166 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
+<androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardPokemonDetails"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="20dp"
+    android:background="@color/lightGray"
+    app:cardCornerRadius="20dp"
+    app:cardElevation="8dp"
     tools:context=".ui.fragment_details.DetailsFragment">
 
-
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardPokemonDetails"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:cardCornerRadius="20dp"
-        android:background="@color/lightGray"
-        android:layout_margin="5dp"
-        app:cardElevation="5dp">
+        android:layout_height="match_parent">
 
-        <ScrollView
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <LinearLayout
+            <ImageView
+                android:id="@+id/imgPokemonFragment"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:gravity="center_horizontal">
+                android:layout_height="240dp"
+                android:layout_marginTop="20dp"
+                android:contentDescription="@string/imgPokemon"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_launcher_background"
+                tools:ignore="ImageContrastCheck"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
 
-                <ImageView
-                    android:id="@+id/imgPokemonFragment"
-                    android:layout_width="match_parent"
-                    android:layout_height="240dp"
-                    android:layout_marginTop="20dp"
-                    android:contentDescription="Imagen de pokemon"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/ic_launcher_background"/>
+            <TextView
+                android:id="@+id/txtPokemonNameTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:maxLines="1"
+                android:text="@string/txtCardNamePokemon"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/imgPokemonFragment"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:maxLines="1"
-                    android:textAlignment="center"
-                    android:text="Nombre"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/black"/>
+            <TextView
+                android:id="@+id/txtPokemonNameFragment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:maxLines="1"
+                android:text="@string/txtCardNamePokemon"
+                android:textAlignment="center"
+                android:textColor="@color/purple"
+                android:textSize="17sp"
+                android:textStyle="bold|italic"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtPokemonNameTitle"/>
 
-                <TextView
-                    android:id="@+id/txtPokemonNameFragment"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="1dp"
-                    android:maxLines="1"
-                    android:textAlignment="center"
-                    android:text="Nombre"
-                    android:textSize="17sp"
-                    android:textStyle="bold|italic"
-                    android:textColor="@color/purple"/>
+            <TextView
+                android:id="@+id/txtPokemonWeightTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:maxLines="1"
+                android:text="@string/txtFragmentWeight"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtPokemonNameFragment"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp"
-                    android:maxLines="1"
-                    android:textAlignment="center"
-                    android:text="Peso"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/black"/>
+            <TextView
+                android:id="@+id/txtPokemonWeightFragment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:text="@string/txtFragmentWeight"
+                android:textAlignment="center"
+                android:textColor="@color/purple"
+                android:textSize="17sp"
+                android:textStyle="bold|italic"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtPokemonWeightTitle"/>
 
-                <TextView
-                    android:id="@+id/txtPokemonWeightFragment"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="1dp"
-                    android:textAlignment="center"
-                    android:text="Peso"
-                    android:textSize="17sp"
-                    android:textStyle="bold|italic"
-                    android:textColor="@color/purple"/>
+            <TextView
+                android:id="@+id/txtPokemonHeightTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:maxLines="1"
+                android:text="@string/txtFragmentHeight"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtPokemonWeightFragment"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp"
-                    android:maxLines="1"
-                    android:textAlignment="center"
-                    android:text="Altura"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/black"/>
+            <TextView
+                android:id="@+id/txtPokemonHeightFragment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:maxLines="1"
+                android:text="@string/txtFragmentHeight"
+                android:textAlignment="center"
+                android:textColor="@color/purple"
+                android:textSize="17sp"
+                android:textStyle="bold|italic"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtPokemonHeightTitle"/>
 
-                <TextView
-                    android:id="@+id/txtPokemonHeightFragment"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="1dp"
-                    android:maxLines="1"
-                    android:textAlignment="center"
-                    android:text="Altura"
-                    android:textSize="17sp"
-                    android:textStyle="bold|italic"
-                    android:textColor="@color/purple"/>
+            <TextView
+                android:id="@+id/txtPokemonAbilitiesTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="6dp"
+                android:text="@string/txtFragmentAbilities"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold" app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtPokemonHeightFragment" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp"
-                    android:layout_marginHorizontal="10dp"
-                    android:textAlignment="center"
-                    android:text="Habilidades"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/black"/>
+            <TextView
+                android:id="@+id/txtPokemonAbilitiesFragment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="1dp"
+                android:text="@string/txtFragmentAbilities"
+                android:textAlignment="center"
+                android:textColor="@color/purple"
+                android:textSize="17sp"
+                android:textStyle="bold|italic"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtPokemonAbilitiesTitle"/>
 
-                <TextView
-                    android:id="@+id/txtPokemonAbilitiesFragment"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="1dp"
-                    android:layout_marginHorizontal="10dp"
-                    android:textAlignment="center"
-                    android:text="Habilidades"
-                    android:textSize="17sp"
-                    android:textStyle="bold|italic"
-                    android:textColor="@color/purple"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
+    </ScrollView>
 
-            </LinearLayout>
+    <Button
+        android:id="@+id/btnBack"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center"
+        android:layout_marginBottom="15dp"
+        android:text="@string/btnBack" />
 
-        </ScrollView>
-
-        <Button
-            android:id="@+id/btnBack"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:text="Regresar"
-            android:layout_marginBottom="15dp"
-            android:layout_gravity="bottom|center"/>
-
-    </androidx.cardview.widget.CardView>
-
-</FrameLayout>
+</androidx.cardview.widget.CardView>

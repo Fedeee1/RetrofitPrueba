@@ -2,7 +2,6 @@ package com.example.retrofitprueba.data.domain.repository.remote
 
 import com.example.retrofitprueba.data.domain.repository.remote.response.pokemon.PokemonUrlResponse
 import com.example.retrofitprueba.data.domain.repository.remote.response.pokemon.ResultResponse
-import com.example.retrofitprueba.data.domain.repository.remote.response.pokemon.ResultUrlResponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path

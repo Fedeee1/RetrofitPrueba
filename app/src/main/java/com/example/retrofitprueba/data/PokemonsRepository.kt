@@ -15,11 +15,10 @@ class PokemonsRepository @Inject constructor(private val api: PokemonService, pr
         return response
     }
 
-    suspend fun getPokemonsDetails(name: String) : PokemonUrlResponse{
+    suspend fun getPokemonDetails(name: String) : PokemonUrlResponse{
         val response = api.getPokemonsDetails(name)
         pokemonProvider.pokemonsDetails = response
         return response
     }
-
 }
 

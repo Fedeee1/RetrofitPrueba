@@ -10,6 +10,6 @@ class GetPokemonDetailsUseCase @Inject constructor(
     private val getListPokemonUrlMapper: GetPokemonUrlMapper
 ) {
     suspend operator fun invoke(name: String): PokemonUrlModel =
-        getListPokemonUrlMapper.fromResponse(repository.getPokemonsDetails(name))
+        getListPokemonUrlMapper.fromResponse(repository.getPokemonDetails(name))
 
 }

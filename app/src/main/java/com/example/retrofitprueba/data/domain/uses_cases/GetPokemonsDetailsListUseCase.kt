@@ -11,11 +11,11 @@ class GetPokemonsDetailsListUseCase @Inject constructor(
     private val getPokemonsListUseCase: GetPokemonsListUseCase
 ) {
     suspend operator fun invoke(): List<PokemonUrlModel> {
-        var listPokemonsDetails = mutableListOf<PokemonUrlModel>()
+        val listPokemonsDetails = mutableListOf<PokemonUrlModel>()
         for (i in getPokemonsListUseCase()) {
             listPokemonsDetails.add(
                 getListPokemonUrlMapper.fromResponse(
-                    repository.getPokemonsDetails(
+                    repository.getPokemonDetails(
                         i.name
                     )
                 )
@@ -23,6 +23,4 @@ class GetPokemonsDetailsListUseCase @Inject constructor(
         }
         return listPokemonsDetails
     }
-
-
 }
