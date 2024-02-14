@@ -1,11 +1,11 @@
-package com.example.retrofitprueba.data.domain.model.pokemon
+package com.example.retrofitprueba.data.domain.model.pokemon.pokemon_details
 
 import com.example.retrofitprueba.data.domain.model.BaseModel
 import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class PokemonSpritesModel(
-    @SerializedName("front_default")
-    val image : String
+data class PokemonAbilitiesModel(
+    @SerializedName("ability")
+    val ability : String
 ) : BaseModel()

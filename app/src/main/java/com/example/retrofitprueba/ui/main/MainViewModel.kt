@@ -2,7 +2,7 @@ package com.example.retrofitprueba.ui.main
 
 import androidx.lifecycle.ViewModel
 import com.example.retrofitprueba.data.domain.model.pokemon.PokemonModel
-import com.example.retrofitprueba.data.domain.model.pokemon.PokemonUrlModel
+import com.example.retrofitprueba.data.domain.model.pokemon.pokemon_details.PokemonUrlModel
 import com.example.retrofitprueba.data.domain.uses_cases.GetPokemonDetailsUseCase
 import com.example.retrofitprueba.data.domain.uses_cases.GetPokemonsDetailsListUseCase
 import com.example.retrofitprueba.data.domain.uses_cases.GetPokemonsListUseCase

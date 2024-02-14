@@ -1,4 +1,4 @@
-package com.example.retrofitprueba.data.domain.model.pokemon
+package com.example.retrofitprueba.data.domain.model.pokemon.pokemon_details
 
 import com.example.retrofitprueba.data.domain.model.BaseModel
 import kotlinx.parcelize.Parcelize

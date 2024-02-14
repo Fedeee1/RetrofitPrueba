@@ -5,11 +5,11 @@ import com.example.retrofitprueba.data.domain.model.pokemon.pokemon_details.Poke
 import com.example.retrofitprueba.data.domain.repository.remote.mapper.pokemonurl.GetPokemonUrlMapper
 import javax.inject.Inject
 
-class GetPokemonDetailsUseCase @Inject constructor(
+class GetPokemonEvolutionsUseCase @Inject constructor(
     private val repository: PokemonsRepository,
     private val getListPokemonUrlMapper: GetPokemonUrlMapper
 ) {
-    suspend operator fun invoke(name: String): PokemonUrlModel =
-        getListPokemonUrlMapper.fromResponse(repository.getPokemonDetails(name))
+    suspend operator fun invoke(id: String): PokemonUrlModel =
+        getListPokemonUrlMapper.fromResponse(repository.getPokemonEvolutions(id))
 
 }

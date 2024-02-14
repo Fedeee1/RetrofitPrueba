@@ -8,7 +8,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.retrofitprueba.R
 import com.example.retrofitprueba.data.domain.model.pokemon.PokemonModel
-import com.example.retrofitprueba.data.domain.model.pokemon.PokemonUrlModel
+import com.example.retrofitprueba.data.domain.model.pokemon.pokemon_details.PokemonUrlModel
 import com.example.retrofitprueba.databinding.ActivityMainBinding
 import com.example.retrofitprueba.ui.fragment_details.DetailsFragment
 import com.example.retrofitprueba.ui.main.adapter.RecyclerPokemonsAdapter

@@ -11,10 +11,9 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.example.retrofitprueba.R
 import com.example.retrofitprueba.data.domain.model.pokemon.PokemonModel
-import com.example.retrofitprueba.data.domain.model.pokemon.PokemonUrlModel
+import com.example.retrofitprueba.data.domain.model.pokemon.pokemon_details.PokemonUrlModel
 import com.example.retrofitprueba.ui.main.MainActivity
 import com.squareup.picasso.Picasso
-import java.util.Locale
 
 class RecyclerPokemonsAdapter(listPokemon: List<PokemonModel>,
                               listPokemonsDetails: List<PokemonUrlModel>,
@@ -23,7 +22,7 @@ class RecyclerPokemonsAdapter(listPokemon: List<PokemonModel>,
     RecyclerView.Adapter<RecyclerPokemonsAdapter.ViewHolder>() {
 
     interface OnPokemonItemClickListener{
-        fun onPokemonClick(pokemonUrl: PokemonUrlModel ,pokemon: PokemonModel)
+        fun onPokemonClick(pokemonUrl: PokemonUrlModel, pokemon: PokemonModel)
     }
 
     private var listPokemons = listPokemon

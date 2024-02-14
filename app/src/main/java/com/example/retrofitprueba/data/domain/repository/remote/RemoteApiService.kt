@@ -15,7 +15,13 @@ interface RemoteApiService {
     ): Response<ResultResponse>
 
     @GET("pokemon/{name}")
-    suspend fun getPokemonDeatails(
+    suspend fun getPokemonDetails(
         @Path("name") name : String
     ): Response<PokemonUrlResponse>
+
+    @GET("evolution-chain/{id}")
+    suspend fun getPokemonEvolutions(
+        @Path("id") id : String
+    ): Response<PokemonUrlResponse>
+
 }

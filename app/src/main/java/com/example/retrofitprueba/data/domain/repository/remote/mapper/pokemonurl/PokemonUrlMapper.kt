@@ -1,6 +1,6 @@
 package com.example.retrofitprueba.data.domain.repository.remote.mapper.pokemonurl
 
-import com.example.retrofitprueba.data.domain.model.pokemon.PokemonUrlModel
+import com.example.retrofitprueba.data.domain.model.pokemon.pokemon_details.PokemonUrlModel
 import com.example.retrofitprueba.data.domain.repository.remote.mapper.ResponseMapper
 import com.example.retrofitprueba.data.domain.repository.remote.response.pokemon.PokemonUrlResponse
 

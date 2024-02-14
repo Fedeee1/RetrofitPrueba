@@ -12,7 +12,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.viewModels
 import com.example.retrofitprueba.R
-import com.example.retrofitprueba.data.domain.model.pokemon.PokemonUrlModel
+import com.example.retrofitprueba.data.domain.model.pokemon.pokemon_details.PokemonUrlModel
 import com.squareup.picasso.Picasso
 
 class DetailsFragment : Fragment() {

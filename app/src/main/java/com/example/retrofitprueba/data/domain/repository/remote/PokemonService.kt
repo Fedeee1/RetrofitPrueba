@@ -1,7 +1,6 @@
 package com.example.retrofitprueba.data.domain.repository.remote
 
 import com.example.retrofitprueba.core.RetrofitClient
-import com.example.retrofitprueba.data.domain.model.pokemon.PokemonUrlModel
 import com.example.retrofitprueba.data.domain.repository.remote.response.pokemon.PokemonResponse
 import com.example.retrofitprueba.data.domain.repository.remote.response.pokemon.PokemonUrlResponse
 import kotlinx.coroutines.Dispatchers
@@ -22,7 +21,15 @@ class PokemonService @Inject constructor() {
     suspend fun getPokemonsDetails(name: String): PokemonUrlResponse {
         return withContext(Dispatchers.IO) {
             val response =
-                service.create(RemoteApiService::class.java).getPokemonDeatails(name)
+                service.create(RemoteApiService::class.java).getPokemonDetails(name)
+            response.body()!!
+        }
+    }
+
+    suspend fun getPokemonsEvolutions(id: String): PokemonUrlResponse {
+        return withContext(Dispatchers.IO) {
+            val response =
+                service.create(RemoteApiService::class.java).getPokemonEvolutions(id)
             response.body()!!
         }
     }

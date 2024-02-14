@@ -6,6 +6,6 @@ import com.example.retrofitprueba.data.domain.repository.remote.response.pokemon
 
 class PokemonMapper : ResponseMapper<PokemonResponse, PokemonModel> {
     override fun fromResponse(response: PokemonResponse): PokemonModel {
-        return PokemonModel(response.name ?: "", response.url ?: "")
+        return PokemonModel(response.name ?: "")
     }
 }
