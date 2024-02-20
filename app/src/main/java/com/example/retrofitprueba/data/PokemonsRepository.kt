@@ -3,7 +3,7 @@ package com.example.retrofitprueba.data
 import com.example.retrofitprueba.data.domain.repository.remote.PokemonProvider
 import com.example.retrofitprueba.data.domain.repository.remote.PokemonService
 import com.example.retrofitprueba.data.domain.repository.remote.response.pokemon.PokemonResponse
-import com.example.retrofitprueba.data.domain.repository.remote.response.pokemon.PokemonUrlResponse
+import com.example.retrofitprueba.data.domain.repository.remote.response.pokemon.pokemon_details_response.PokemonUrlResponse
 import javax.inject.Inject
 
 
@@ -15,14 +15,8 @@ class PokemonsRepository @Inject constructor(private val api: PokemonService, pr
         return response
     }
 
-    suspend fun getPokemonDetails(name: String) : PokemonUrlResponse{
+    suspend fun getPokemonDetails(name: String) : PokemonUrlResponse {
         val response = api.getPokemonsDetails(name)
-        pokemonProvider.pokemonsDetails = response
-        return response
-    }
-
-    suspend fun getPokemonEvolutions(id: String) : PokemonUrlResponse{
-        val response = api.getPokemonsEvolutions(id)
         pokemonProvider.pokemonsDetails = response
         return response
     }

@@ -6,6 +6,5 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class ResultUrlModel(
-    @SerializedName("results")
     val results: PokemonUrlModel
 ) : BaseModel()

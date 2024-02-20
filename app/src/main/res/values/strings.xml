@@ -9,4 +9,5 @@
     <string name="txtFragmentHeight">Altura</string>
     <string name="txtFragmentAbilities">Habilidades</string>
     <string name="btnBack">Regresar</string>
+    <string name="txtEvolutions">Evoluciones</string>
 </resources>

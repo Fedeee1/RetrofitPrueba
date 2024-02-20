@@ -14,29 +14,28 @@ import com.example.retrofitprueba.data.domain.model.pokemon.PokemonModel
 import com.example.retrofitprueba.data.domain.model.pokemon.pokemon_details.PokemonUrlModel
 import com.example.retrofitprueba.ui.main.MainActivity
 import com.squareup.picasso.Picasso
+import javax.inject.Inject
 
-class RecyclerPokemonsAdapter(listPokemon: List<PokemonModel>,
-                              listPokemonsDetails: List<PokemonUrlModel>,
-                              activity: MainActivity,
-                              private val listener: OnPokemonItemClickListener):
+class RecyclerPokemonsAdapter @Inject constructor(
+    private var listPokemons: List<PokemonModel>,
+    private var listPokemonsDetails: List<PokemonUrlModel>,
+    private var activity: MainActivity,
+    private val listener: OnPokemonItemClickListener):
     RecyclerView.Adapter<RecyclerPokemonsAdapter.ViewHolder>() {
 
     interface OnPokemonItemClickListener{
         fun onPokemonClick(pokemonUrl: PokemonUrlModel, pokemon: PokemonModel)
     }
 
-    private var listPokemons = listPokemon
-    private var listPokemonsDetails = listPokemonsDetails
-    private var activity = activity
     inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
-        var txtCountryName: TextView
+        var txtPokemonName: TextView
         var imgPokemon: ImageView
         private var constraintCardPokemons: ConstraintLayout
         var cardPokemon: CardView
         var viewBlockActivity: View
 
         init {
-            txtCountryName = itemView.findViewById(R.id.txtPokemonName)
+            txtPokemonName = itemView.findViewById(R.id.txtPokemonName)
             imgPokemon = itemView.findViewById(R.id.imgPokemon)
             constraintCardPokemons = itemView.findViewById(R.id.constraintCardPokemons)
             cardPokemon = itemView.findViewById(R.id.cardPokemon)
@@ -50,7 +49,7 @@ class RecyclerPokemonsAdapter(listPokemon: List<PokemonModel>,
     }
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
 
-        viewHolder.txtCountryName.text = listPokemons[position].name.replaceFirstChar { it.uppercaseChar() }
+        viewHolder.txtPokemonName.text = listPokemons[position].name.replaceFirstChar { it.uppercaseChar() }
 
         val image = Uri.parse(listPokemonsDetails[position].sprites)
         Picasso.get()

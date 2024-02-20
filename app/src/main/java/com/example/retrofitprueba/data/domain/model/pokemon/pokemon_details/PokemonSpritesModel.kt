@@ -6,6 +6,5 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class PokemonSpritesModel(
-    @SerializedName("front_default")
     val image : String
 ) : BaseModel()

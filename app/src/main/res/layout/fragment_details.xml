@@ -6,7 +6,8 @@
     android:id="@+id/cardPokemonDetails"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="20dp"
+    android:layout_marginHorizontal="20dp"
+    android:layout_marginBottom="20dp"
     android:background="@color/lightGray"
     app:cardCornerRadius="20dp"
     app:cardElevation="8dp"
@@ -14,7 +15,8 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginBottom="80dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"

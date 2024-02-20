@@ -1,9 +1,12 @@
 package com.example.retrofitprueba.ui.fragment_details
 
 import androidx.lifecycle.ViewModel
+import dagger.hilt.android.lifecycle.HiltViewModel
 import java.text.DecimalFormat
+import javax.inject.Inject
 
-class DetailsFragmentViewModel : ViewModel() {
+@HiltViewModel
+class DetailsFragmentViewModel @Inject constructor() : ViewModel() {
 
     fun convertDecimetersTofeet(decimeters: Double) :  String{
         val feet = decimeters * 0.328084

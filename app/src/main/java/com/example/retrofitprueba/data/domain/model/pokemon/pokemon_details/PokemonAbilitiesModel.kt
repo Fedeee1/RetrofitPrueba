@@ -6,6 +6,5 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class PokemonAbilitiesModel(
-    @SerializedName("ability")
     val ability : String
 ) : BaseModel()

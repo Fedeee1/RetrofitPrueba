@@ -6,14 +6,9 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class PokemonUrlModel(
-    @SerializedName("id")
     val id : String,
-    @SerializedName("sprites")
     val sprites : String,
-    @SerializedName("weight")
     val weight : String,
-    @SerializedName("height")
     val height : String,
-    @SerializedName("abilities")
     val abilities : String
 ) : BaseModel()
