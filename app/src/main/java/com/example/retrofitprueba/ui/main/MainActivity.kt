@@ -1,9 +1,11 @@
 package com.example.retrofitprueba.ui.main
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
+import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.retrofitprueba.R
@@ -29,40 +31,54 @@ class MainActivity : AppCompatActivity(), RecyclerPokemonsAdapter.OnPokemonItemC
         setContentView(binding.root)
 
         binding.progressLoading.isVisible = true
-        setupViewModel()
-
+        setUpViewModel()
+        viewModel.getListPokemon()
     }
 
-    private fun setupViewModel(){
-        viewModel.viewModelScope.launch {
-            var listPokemonsDetails = listOf<PokemonUrlModel>()
-            var listPokemons = listOf<PokemonModel>()
-            viewModel.listPokemonsFlow.collect {
-                listPokemons = it
-                println("lista $it")
+    private fun setUpViewModel() {
+
+        var listPokemonsDetails: List<PokemonUrlModel>
+        var listPokemons = listOf<PokemonModel>()
+
+        lifecycleScope.launch {
+            viewModel.listPokemonNamesStateFlow.collect { dataSet ->
+                listPokemons = dataSet
+                viewModel.getPokemonDetails(listPokemons)
             }
-            viewModel.listPokemonsDetailsFlow.collect {
-                listPokemonsDetails = it
-                println(it)
+        }
+        lifecycleScope.launch {
+            viewModel.listPokemonErrorSharedFlow.collect { error ->
+                Toast.makeText(this@MainActivity, error.message, Toast.LENGTH_SHORT).show()
             }
-            addRecyclerView(listPokemons, listPokemonsDetails)
-            binding.progressLoading.isVisible = false
+        }
+        lifecycleScope.launch {
+            viewModel.listPokemonDetailsStateFlow.collect { dataSet ->
+                listPokemonsDetails = dataSet
+                addRecyclerView(listPokemons, listPokemonsDetails)
+            }
+        }
+        lifecycleScope.launch {
+            viewModel.isProgressVisibleFlow.collect {
+                binding.progressLoading.isVisible = it
+            }
         }
     }
 
-    private fun addRecyclerView(listPokemons: List<PokemonModel>, listPokemonsDetails: List<PokemonUrlModel>) {
-        val adapter = RecyclerPokemonsAdapter(listPokemons, listPokemonsDetails,this, this)
+    private fun addRecyclerView(
+        listPokemons: List<PokemonModel>,
+        listPokemonsDetails: List<PokemonUrlModel>
+    ) {
+        val adapter = RecyclerPokemonsAdapter(listPokemons, listPokemonsDetails, this, this)
         binding.recyclerPokemons.layoutManager = GridLayoutManager(this, 2)
         binding.recyclerPokemons.adapter = adapter
     }
 
     override fun onPokemonClick(pokemonUrl: PokemonUrlModel, pokemon: PokemonModel) {
-        viewModel.name = pokemon.name
         println("Pokemon id: " + pokemonUrl.id)
-        openFragment(pokemonUrl , pokemon.name)
+        openFragment(pokemonUrl, pokemon.name)
     }
 
-    private fun openFragment(pokemonUrlModel: PokemonUrlModel, pokemonsName: String){
+    private fun openFragment(pokemonUrlModel: PokemonUrlModel, pokemonsName: String) {
         val bundle = Bundle()
         viewModel.viewModelScope.launch {
             bundle.putParcelable(POKEMON_DETAILS_KEY, pokemonUrlModel)

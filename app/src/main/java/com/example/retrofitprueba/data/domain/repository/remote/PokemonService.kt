@@ -1,28 +1,31 @@
 package com.example.retrofitprueba.data.domain.repository.remote
 
-import com.example.retrofitprueba.core.RetrofitClient
-import com.example.retrofitprueba.data.domain.repository.remote.response.pokemon.PokemonResponse
-import com.example.retrofitprueba.data.domain.repository.remote.response.pokemon.pokemon_details_response.PokemonUrlResponse
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
+import com.example.retrofitprueba.data.domain.model.pokemon.ResultModel
+import com.example.retrofitprueba.data.domain.model.pokemon.pokemon_details.PokemonUrlModel
+import com.example.retrofitprueba.data.domain.repository.remote.mapper.pokemon.GetListPokemonResultMapper
+import com.example.retrofitprueba.data.domain.repository.remote.mapper.pokemonurl.PokemonUrlMapper
+import com.example.retrofitprueba.data.domain.repository.remote.response.BaseResponse
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
-class PokemonService @Inject constructor() {
-    private val service = RetrofitClient.makeRetrofitService()
+class PokemonService @Inject constructor(private val apiCallService: ApiCallService) {
 
-    suspend fun getPokemons(limit: Int, offset: Int): List<PokemonResponse> {
-        return withContext(Dispatchers.IO) {
-            val response =
-                service.create(RemoteApiService::class.java).getListPokemon(limit, offset)
-            response.body()?.results ?: emptyList()
+    fun getListPokemon(limit: Int, offset: Int): Flow<BaseResponse<ResultModel>> = flow {
+        val apiResult = apiCallService.getListPokemon(limit, offset)
+        if (apiResult is BaseResponse.Success) {
+            emit(BaseResponse.Success(GetListPokemonResultMapper().fromResponse(apiResult.data.results)))
+        } else if (apiResult is BaseResponse.Error) {
+            emit(BaseResponse.Error(apiResult.error))
         }
     }
 
-    suspend fun getPokemonsDetails(name: String): PokemonUrlResponse {
-        return withContext(Dispatchers.IO) {
-            val response =
-                service.create(RemoteApiService::class.java).getPokemonDetails(name)
-            response.body()!!
+    fun getPokemonsDetailsError(name: String): Flow<BaseResponse<PokemonUrlModel>> = flow {
+        val apiResult = apiCallService.getPokemonDetails(name)
+        if (apiResult is BaseResponse.Success) {
+            emit(BaseResponse.Success(PokemonUrlMapper().fromResponse(apiResult.data)))
+        } else if (apiResult is BaseResponse.Error) {
+            emit(BaseResponse.Error(apiResult.error))
         }
     }
 }

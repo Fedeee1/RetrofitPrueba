@@ -1,7 +1,7 @@
 package com.example.retrofitprueba.data.domain.repository.remote
 
-import com.example.retrofitprueba.data.domain.repository.remote.response.pokemon.pokemon_details_response.PokemonUrlResponse
 import com.example.retrofitprueba.data.domain.repository.remote.response.pokemon.ResultResponse
+import com.example.retrofitprueba.data.domain.repository.remote.response.pokemon.pokemon_details_response.PokemonUrlResponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -18,5 +18,4 @@ interface RemoteApiService {
     suspend fun getPokemonDetails(
         @Path("name") name : String
     ): Response<PokemonUrlResponse>
-
 }
