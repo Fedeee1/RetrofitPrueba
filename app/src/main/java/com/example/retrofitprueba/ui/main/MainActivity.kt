@@ -52,6 +52,11 @@ class MainActivity : AppCompatActivity(), RecyclerPokemonsAdapter.OnPokemonItemC
             }
         }
         lifecycleScope.launch {
+            viewModel.pokemonDetailsErrorSharedFlow.collect { error ->
+                Toast.makeText(this@MainActivity, error.message, Toast.LENGTH_SHORT).show()
+            }
+        }
+        lifecycleScope.launch {
             viewModel.listPokemonDetailsStateFlow.collect { dataSet ->
                 listPokemonsDetails = dataSet
                 addRecyclerView(listPokemons, listPokemonsDetails)
@@ -74,7 +79,6 @@ class MainActivity : AppCompatActivity(), RecyclerPokemonsAdapter.OnPokemonItemC
     }
 
     override fun onPokemonClick(pokemonUrl: PokemonUrlModel, pokemon: PokemonModel) {
-        println("Pokemon id: " + pokemonUrl.id)
         openFragment(pokemonUrl, pokemon.name)
     }
 

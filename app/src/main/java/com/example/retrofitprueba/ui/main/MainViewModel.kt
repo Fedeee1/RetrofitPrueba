@@ -10,8 +10,8 @@ import com.example.retrofitprueba.data.domain.model.error.ErrorModel
 import com.example.retrofitprueba.data.domain.model.pokemon.PokemonModel
 import com.example.retrofitprueba.data.domain.model.pokemon.pokemon_details.PokemonUrlModel
 import com.example.retrofitprueba.data.domain.repository.remote.response.BaseResponse
-import com.example.retrofitprueba.data.domain.uses_cases.GetPokemonDetailsErrorUseCase
-import com.example.retrofitprueba.data.domain.uses_cases.GetPokemonsListErrorCheckedUseCase
+import com.example.retrofitprueba.data.domain.uses_cases.GetPokemonDetailsUseCase
+import com.example.retrofitprueba.data.domain.uses_cases.GetPokemonsListUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -24,8 +24,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    private val getPokemonsListErrorCheckedUseCase: GetPokemonsListErrorCheckedUseCase,
-    private val getPokemonDetailsErrorUseCase: GetPokemonDetailsErrorUseCase
+    private val getPokemonsListErrorCheckedUseCase: GetPokemonsListUseCase,
+    private val getPokemonDetailsErrorUseCase: GetPokemonDetailsUseCase
 ) : ViewModel() {
 
 
@@ -67,8 +67,7 @@ class MainViewModel @Inject constructor(
     val listPokemonDetailsStateFlow: StateFlow<MutableList<PokemonUrlModel>> =
         listPokemonDetailsMutableStateFlow
 
-    private val pokemonDetailsMutableStateFlow =
-        MutableStateFlow<PokemonUrlModel>(PokemonUrlModel("", "", "", "", ""))
+    private val pokemonDetailsMutableStateFlow = MutableStateFlow<PokemonUrlModel>(PokemonUrlModel("", "", "", "", ""))
     val pokemonDetailsStateFlow: StateFlow<PokemonUrlModel> = pokemonDetailsMutableStateFlow
 
     private val pokemonDetailsErrorMutableSharedFlow = MutableSharedFlow<ErrorModel>()
@@ -92,20 +91,15 @@ class MainViewModel @Inject constructor(
 
                         is BaseResponse.Success -> {
                             listPokemonsDetails.add(it.data)
-
                         }
-
                         else -> {}
                     }
-
                 }
                 if (listPokemonsNames.last().name == i.name) {
                     isProgressVisible.value = false
                 }
             }
-
             listPokemonDetailsMutableStateFlow.emit(listPokemonsDetails)
-
         }
     }
 }
