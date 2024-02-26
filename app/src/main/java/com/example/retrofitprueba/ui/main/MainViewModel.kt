@@ -1,7 +1,5 @@
 package com.example.retrofitprueba.ui.main
 
-import android.annotation.SuppressLint
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.retrofitprueba.commons.GET_LIST_POKEMON_LIMIT
@@ -28,7 +26,6 @@ class MainViewModel @Inject constructor(
     private val getPokemonDetailsErrorUseCase: GetPokemonDetailsUseCase
 ) : ViewModel() {
 
-
     private val listPokemonNamesMutableStateFlow =
         MutableStateFlow<ArrayList<PokemonModel>>(arrayListOf())
     val listPokemonNamesStateFlow: StateFlow<ArrayList<PokemonModel>> =
@@ -46,17 +43,10 @@ class MainViewModel @Inject constructor(
                     is BaseResponse.Error -> {
                         listPokemonErrorMutableSharedFlow.emit(it.error)
                     }
-
                     is BaseResponse.Success -> {
                         val arrayList = ArrayList(it.data.results)
-                        Log.d(
-                            "TAG",
-                            "l> Tenemos una lista de ${arrayList.size} elementos: $arrayList vamos a emitirla"
-                        )
                         listPokemonNamesMutableStateFlow.value = arrayList
                     }
-
-                    else -> {}
                 }
             }
         }
@@ -67,36 +57,34 @@ class MainViewModel @Inject constructor(
     val listPokemonDetailsStateFlow: StateFlow<MutableList<PokemonUrlModel>> =
         listPokemonDetailsMutableStateFlow
 
-    private val pokemonDetailsMutableStateFlow = MutableStateFlow<PokemonUrlModel>(PokemonUrlModel("", "", "", "", ""))
-    val pokemonDetailsStateFlow: StateFlow<PokemonUrlModel> = pokemonDetailsMutableStateFlow
-
     private val pokemonDetailsErrorMutableSharedFlow = MutableSharedFlow<ErrorModel>()
     val pokemonDetailsErrorSharedFlow: SharedFlow<ErrorModel> = pokemonDetailsErrorMutableSharedFlow
 
     private val isProgressVisible = MutableStateFlow(true)
     var isProgressVisibleFlow: Flow<Boolean> = isProgressVisible
 
-    @SuppressLint("SuspiciousIndentation")
     fun getPokemonDetails(listPokemonsNames: List<PokemonModel>) {
-        var listPokemonsDetails = mutableListOf<PokemonUrlModel>()
+        val listPokemonsDetails = mutableListOf<PokemonUrlModel>()
 
         viewModelScope.launch(Dispatchers.IO) {
+            var error = false
             for (i in listPokemonsNames) {
                 getPokemonDetailsErrorUseCase(i.name).collect {
-
                     when (it) {
                         is BaseResponse.Error -> {
                             pokemonDetailsErrorMutableSharedFlow.emit(it.error)
+                            error = true
                         }
-
                         is BaseResponse.Success -> {
                             listPokemonsDetails.add(it.data)
                         }
-                        else -> {}
                     }
                 }
                 if (listPokemonsNames.last().name == i.name) {
                     isProgressVisible.value = false
+                }
+                if (error){
+                    break
                 }
             }
             listPokemonDetailsMutableStateFlow.emit(listPokemonsDetails)
